@@ -3,11 +3,13 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
+  ManyToOne,
 } from "typeorm";
+import { User } from "./user.entity";
 
 @Entity("contacts")
 class Contact {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("increment")
   id: number;
 
   @Column({ length: 45 })
@@ -21,6 +23,10 @@ class Contact {
 
   @CreateDateColumn()
   createAt: string;
+
+  @ManyToOne(()=> User, {cascade: true, onDelete: "CASCADE"})
+  user: User
+
 }
 
 export { Contact };

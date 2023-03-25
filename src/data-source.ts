@@ -1,13 +1,12 @@
 import "dotenv/config";
 import "reflect-metadata";
 import { DataSource, DataSourceOptions } from "typeorm";
-import path from "path";
 import { User } from "./entities/user.entity";
+import { Contact } from "./entities/contacts.entity";
 import {createUser1679513697279} from "./migrations/1679513697279-createUser";
+import { createContact1679753229578 } from "./migrations/1679753229578-createContact";
 
 const DataSourceConfig = (): DataSourceOptions => {
-  // const entitiesPath: string = path.join(__dirname, "./entities/**.{ts,js}");
-  // const migrationsPath: string = path.join(__dirname, "./migrations/**.{ts,js}");
   const dbUrl: string | undefined = process.env.DATABASE_URL;
 
   if (!dbUrl) {
@@ -21,7 +20,7 @@ const DataSourceConfig = (): DataSourceOptions => {
       type: "sqlite",
       database: ":memory",
       synchronize: true,
-      entities: [User],
+      entities: [User, Contact],
     };
   }
 
@@ -30,8 +29,8 @@ const DataSourceConfig = (): DataSourceOptions => {
     url: dbUrl,
     synchronize: false,
     logging: true,
-    migrations: [createUser1679513697279],
-    entities: [User],
+    migrations: [createUser1679513697279, createContact1679753229578],
+    entities: [User, Contact],
   };
 };
 
