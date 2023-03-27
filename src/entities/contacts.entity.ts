@@ -3,6 +3,7 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
+  DeleteDateColumn,
   ManyToOne,
 } from "typeorm";
 import { User } from "./user.entity";
@@ -23,6 +24,9 @@ class Contact {
 
   @CreateDateColumn()
   createAt: string;
+
+  @DeleteDateColumn() 
+  deletedAt: string;
 
   @ManyToOne(()=> User, {cascade: true, onDelete: "CASCADE"})
   user: User

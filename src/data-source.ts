@@ -5,6 +5,7 @@ import { User } from "./entities/user.entity";
 import { Contact } from "./entities/contacts.entity";
 import {createUser1679513697279} from "./migrations/1679513697279-createUser";
 import { createContact1679753229578 } from "./migrations/1679753229578-createContact";
+import { deleteAtContacts1679836466552 } from "./migrations/1679836466552-deleteAtContacts";
 
 const DataSourceConfig = (): DataSourceOptions => {
   const dbUrl: string | undefined = process.env.DATABASE_URL;
@@ -29,7 +30,7 @@ const DataSourceConfig = (): DataSourceOptions => {
     url: dbUrl,
     synchronize: false,
     logging: true,
-    migrations: [createUser1679513697279, createContact1679753229578],
+    migrations: [createUser1679513697279, createContact1679753229578, deleteAtContacts1679836466552],
     entities: [User, Contact],
   };
 };
