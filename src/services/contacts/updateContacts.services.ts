@@ -9,7 +9,7 @@ const updateContactService = async (newContactData: IContactUpdate, idContact: n
     const oldContact = await contactRepo.findOneBy({id: idContact})
     const contact = contactRepo.create({...oldContact, ...newContactData})
     await contactRepo.save(contact)
-    const updateContact: any = contactUpdateSchema.parse(contact)
+    const updateContact: IContactReturnUpdate = contactUpdateSchema.parse(contact)
     return updateContact
 
 }

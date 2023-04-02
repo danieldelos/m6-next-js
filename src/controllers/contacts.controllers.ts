@@ -27,7 +27,7 @@ const listContactUserController = async (req: Request, res: Response ): Promise<
 const updateContactController = async (req: Request, res: Response): Promise<Response> => {
   const contactData = req.body
   const idContact = parseInt(req.params.id)
-  const updateContact = updateContactService(contactData, idContact)
+  const updateContact = await updateContactService(contactData, idContact)
   return res.json(updateContact)
 }
 
